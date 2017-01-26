@@ -11,7 +11,7 @@ public class News {
 	 * @version 1.0
 	 * 
 	 */
-	static String rssUrl = "https://www.welt.de/feeds/topnews.rss";
+	static String rssUrl = "http://www.tagesschau.de/xml/rss2"; //https://www.welt.de/feeds/topnews.rss
 	boolean console = false;
 
 	public News() {
@@ -48,6 +48,41 @@ public class News {
 	}
 
 	public String[] getNews() {
+		String sourceCode = "";
+		try {
+			URL url = new URL(rssUrl);
+			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+
+			String line;
+
+			while ((line = in.readLine()) != null) {
+				if (line.contains("<item>")) {
+
+					if ((line = in.readLine()) != null && line.contains("<title>")) {
+						int firstPos = line.indexOf("<title>");
+						String temp = line.substring(firstPos);
+						temp = temp.replace("<title>", "");
+
+						int lastPos = temp.indexOf("</title>");
+						temp = temp.substring(0, lastPos);
+
+						sourceCode += temp + "\n";
+					}
+				}
+				if (console)
+					System.out.println(line);
+
+			}
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sourceCode.split("\n");
+
+	}
+	
+	public String[] getNews(String source) {
+		rssUrl = source;
 		String sourceCode = "";
 		try {
 			URL url = new URL(rssUrl);
