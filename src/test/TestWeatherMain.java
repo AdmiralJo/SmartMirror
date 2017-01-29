@@ -17,10 +17,7 @@ public class TestWeatherMain {
 		System.out.println("Max Temp:" + weather.getMaxTemp());
 		System.out.println("Temp:" + weather.getTemp());
 		System.out.println("Weather: " + weather.getWeatherDescribtion());
-
-		// System.out.println(date.getDay() + "." + date.getMonth() + "." +
-		// date.getYear() + " " + date.getHours() + ":"
-		// + date.getMinutes());
+		System.out.println("IconLabel: " + weather.getIconLabel());
 
 	}
 

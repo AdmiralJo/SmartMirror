@@ -26,6 +26,7 @@ public class Weather {
 	String maxTemp;
 	String minTemp;
 	String temp;
+	String iconLabel;
 
 	public Weather(String openweathermapclientkey) {
 		API_KEY = openweathermapclientkey;
@@ -48,8 +49,10 @@ public class Weather {
 		return temp;
 	}
 
-	
-	
+	public String getIconLabel() {
+		return iconLabel;
+	}
+
 	public void getForecastToday() {
 		owmurl = "http://api.openweathermap.org/data/2.5/weather?" + "q=" + location + "&units=" + units + "&lang="
 				+ lang + "&appid=" + API_KEY;
@@ -65,6 +68,11 @@ public class Weather {
 
 			String keyStr = (String) key;
 			String keyvalue = weatherJSONObject.get(keyStr).toString();
+
+			if (keyvalue.contains("\"main\"")) {
+				iconLabel = keyvalue.substring(keyvalue.indexOf("\"main\""), keyvalue.indexOf("id") - 3);
+				iconLabel = iconLabel.replaceAll("\"main\":\"", "");
+			}
 
 			if (keyvalue.contains("\"description\"")) {
 				describtion = keyvalue.substring(keyvalue.indexOf("\"description\""), keyvalue.indexOf("main") - 3);
@@ -86,7 +94,7 @@ public class Weather {
 
 			}
 
-			// System.out.println("key: " + keyStr + " value: " + keyvalue);
+			System.out.println("key: " + keyStr + " value: " + keyvalue);
 
 		}
 
