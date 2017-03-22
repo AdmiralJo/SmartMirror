@@ -12,7 +12,7 @@ public class News {
 	 * 
 	 */
 	static String rssUrl = "http://www.tagesschau.de/xml/rss2"; //https://www.welt.de/feeds/topnews.rss
-	boolean console = false;
+	boolean consoleoutput = false;
 
 	public News() {
 
@@ -23,20 +23,20 @@ public class News {
 	}
 
 	public News(boolean isConsoleActive) {
-		console = isConsoleActive;
+		consoleoutput = isConsoleActive;
 	}
 
 	public News(String rssSource, boolean isConsoleActive) {
-		console = isConsoleActive;
+		consoleoutput = isConsoleActive;
 		rssUrl = rssSource;
 	}
 
 	public void setConsoleActive(boolean activeConsole) {
-		console = activeConsole;
+		consoleoutput = activeConsole;
 	}
 
 	public boolean isConsoleActive() {
-		return console;
+		return consoleoutput;
 	}
 
 	public void setNewsSource(String rssSource) {
@@ -69,7 +69,7 @@ public class News {
 						sourceCode += temp + "\n";
 					}
 				}
-				if (console)
+				if (consoleoutput)
 					System.out.println(line);
 
 			}
@@ -104,7 +104,7 @@ public class News {
 						sourceCode += temp + "\n";
 					}
 				}
-				if (console)
+				if (consoleoutput)
 					System.out.println(line);
 
 			}

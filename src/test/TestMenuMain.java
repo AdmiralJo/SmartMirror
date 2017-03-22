@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 import components.Menu;
 
-public class TestMenu {
+public class TestMenuMain {
 	public static void main(String[] args) {
 
 		String[] s = { "Blub", "Licht", "Einstellungen", "Radio" };
