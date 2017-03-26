@@ -5,14 +5,18 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Date;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -95,14 +99,13 @@ public class InfoPanel extends JPanel {
 		Graphics.addComponent(this, layout, pnlTemp, 2, 0, 1, 1, 0, 0, new Insets(0, 0, 0, 0));
 
 		lblIcon = new JLabel("");
-		// try {
-		// BufferedImage image = ImageIO
-		// .read(new URL("http://openweathermap.org/img/w/" + weather.getIcon()
-		// + ".png"));
-		// lblIcon = new JLabel(new ImageIcon(image));
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
+		try {
+			BufferedImage image = ImageIO
+					.read(new URL("http://openweathermap.org/img/w/" + weather.getIcon() + ".png"));
+			lblIcon = new JLabel(new ImageIcon(image));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Graphics.addComponent(pnlTemp, layout, lblIcon, 0, 0, 1, 1, 0, 0, new Insets(0, 0, 0, 0));
 
 		lblTemp = new JLabel("", SwingConstants.RIGHT);
@@ -137,14 +140,13 @@ public class InfoPanel extends JPanel {
 					lblMinTemp.setText("min " + weather.getMinTemp() + "°C");
 					lblMaxTemp.setText("max " + weather.getMaxTemp() + "°C");
 
-					// try {
-					// BufferedImage image = ImageIO
-					// .read(new URL("http://openweathermap.org/img/w/" +
-					// weather.getIcon() + ".png"));
-					// lblIcon = new JLabel(new ImageIcon(image));
-					// } catch (IOException e) {
-					// e.printStackTrace();
-					// }
+					try {
+						BufferedImage image = ImageIO
+								.read(new URL("http://openweathermap.org/img/w/" + weather.getIcon() + ".png"));
+						lblIcon = new JLabel(new ImageIcon(image));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
 					try {
 						Thread.sleep(5000);
