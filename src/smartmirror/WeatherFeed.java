@@ -28,6 +28,7 @@ public class WeatherFeed {
 	String iconLabel;
 	String id;
 	String icon;
+	String rainprob;
 
 	public WeatherFeed(String openweathermapclientkey) {
 		API_KEY = openweathermapclientkey;
@@ -60,6 +61,10 @@ public class WeatherFeed {
 
 	public String getIcon() {
 		return icon;
+	}
+	
+	public String getRainProbability(){
+		return rainprob;
 	}
 
 	public void getForecastToday() {
@@ -101,8 +106,9 @@ public class WeatherFeed {
 				icon = keyvalue.substring(keyvalue.indexOf("\"icon\":\""), keyvalue.indexOf("\"icon\":\"") + 11);
 				icon = icon.replaceAll("\"icon\":\"", "");
 			}
+			
 
-//			System.out.println("key: " + keyStr + " value: " + keyvalue);
+			//System.out.println("key: " + keyStr + " value: " + keyvalue);
 
 		}
 

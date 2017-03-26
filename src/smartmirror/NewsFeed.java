@@ -77,6 +77,13 @@ public class NewsFeed {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		sourceCode = sourceCode.replaceAll("Ã¤", "ä");
+		sourceCode = sourceCode.replaceAll("ÃŸ", "ß");
+		sourceCode = sourceCode.replaceAll("Ã¼", "ü");
+		sourceCode = sourceCode.replaceAll("Ã¶", "ö");
+		
+		
 		return sourceCode.split("\n");
 
 	}
