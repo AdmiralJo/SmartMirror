@@ -5,18 +5,14 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Date;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -30,7 +26,7 @@ public class InfoPanel extends JPanel {
 	GridBagLayout layout = new GridBagLayout();
 	JPanel pnlDate = new JPanel(), pnlTemp = new JPanel();
 	Font font;
-	JLabel lblTime, lblDate, lblTemp, lblMinTemp, lblMaxTemp, lblIcon;
+	JLabel lblTime, lblDate, lblTemp, lblMinTemp, lblMaxTemp, lblIcon, lblWeather;
 
 	public InfoPanel() {
 
@@ -98,35 +94,45 @@ public class InfoPanel extends JPanel {
 		pnlTemp.setLayout(layout);
 		Graphics.addComponent(this, layout, pnlTemp, 2, 0, 1, 1, 0, 0, new Insets(0, 0, 0, 0));
 
-		lblIcon = new JLabel("");
-		try {
-			BufferedImage image = ImageIO
-					.read(new URL("http://openweathermap.org/img/w/" + weather.getIcon() + ".png"));
-			lblIcon = new JLabel(new ImageIcon(image));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Graphics.addComponent(pnlTemp, layout, lblIcon, 0, 0, 1, 1, 0, 0, new Insets(0, 0, 0, 0));
+		// lblIcon = new JLabel("");
+		// try {
+		// BufferedImage image = ImageIO
+		// .read(new URL("http://openweathermap.org/img/w/" + weather.getIcon()
+		// + ".png"));
+		// lblIcon = new JLabel(new ImageIcon(image));
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// }
+		// Graphics.addComponent(pnlTemp, layout, lblIcon, 0, 0, 1, 1, 0, 0, new
+		// Insets(0, 0, 0, 0));
 
 		lblTemp = new JLabel("", SwingConstants.RIGHT);
 		lblTemp.setFont(font.deriveFont(0, 82));
 		lblTemp.setForeground(Color.white);
-		Graphics.addComponent(pnlTemp, layout, lblTemp, 1, 0, 1, 1, 0, 0, new Insets(10, 10, 0, 50));
+		Graphics.addComponent(pnlTemp, layout, lblTemp, 0, 0, 1, 1, 0, 0, new Insets(10, 10, 0, 50));
 
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.black);
-		panel.setLayout(layout);
-		Graphics.addComponent(pnlTemp, layout, panel, 0, 1, 2, 1, 0, 0, new Insets(0, 0, 0, 0));
+		lblWeather = new JLabel("", SwingConstants.RIGHT);
+		lblWeather.setFont(font.deriveFont(0, 28));
+		lblWeather.setForeground(Color.white);
+		Graphics.addComponent(pnlTemp, layout, lblWeather, 0, 1, 1, 1, 0, 0, new Insets(0, 10, 0, 50));
 
-		lblMinTemp = new JLabel("", SwingConstants.RIGHT);
-		lblMinTemp.setFont(font.deriveFont(0, 28));
-		lblMinTemp.setForeground(Color.white);
-		Graphics.addComponent(panel, layout, lblMinTemp, 0, 0, 1, 1, 0, 0, new Insets(0, 0, 0, 10));
-
-		lblMaxTemp = new JLabel("", SwingConstants.RIGHT);
-		lblMaxTemp.setFont(font.deriveFont(0, 28));
-		lblMaxTemp.setForeground(Color.white);
-		Graphics.addComponent(panel, layout, lblMaxTemp, 1, 0, 1, 1, 0, 0, new Insets(0, 10, 0, 50));
+		// JPanel panel = new JPanel();
+		// panel.setBackground(Color.black);
+		// panel.setLayout(layout);
+		// Graphics.addComponent(pnlTemp, layout, panel, 0, 1, 2, 1, 0, 0, new
+		// Insets(0, 0, 0, 0));
+		//
+		// lblMinTemp = new JLabel("", SwingConstants.RIGHT);
+		// lblMinTemp.setFont(font.deriveFont(0, 28));
+		// lblMinTemp.setForeground(Color.white);
+		// Graphics.addComponent(panel, layout, lblMinTemp, 0, 0, 1, 1, 0, 0,
+		// new Insets(0, 0, 0, 10));
+		//
+		// lblMaxTemp = new JLabel("", SwingConstants.RIGHT);
+		// lblMaxTemp.setFont(font.deriveFont(0, 28));
+		// lblMaxTemp.setForeground(Color.white);
+		// Graphics.addComponent(panel, layout, lblMaxTemp, 1, 0, 1, 1, 0, 0,
+		// new Insets(0, 10, 0, 50));
 
 		new Thread(new Runnable() {
 
@@ -137,16 +143,19 @@ public class InfoPanel extends JPanel {
 
 					weather.getForecastToday();
 					lblTemp.setText(String.valueOf((int) (Double.parseDouble(weather.getTemp()))) + "°C");
-					lblMinTemp.setText("min " + weather.getMinTemp() + "°C");
-					lblMaxTemp.setText("max " + weather.getMaxTemp() + "°C");
+					lblWeather.setText(weather.getWeatherDescribtion());
 
-					try {
-						BufferedImage image = ImageIO
-								.read(new URL("http://openweathermap.org/img/w/" + weather.getIcon() + ".png"));
-						lblIcon = new JLabel(new ImageIcon(image));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					// lblMinTemp.setText("min " + weather.getMinTemp() + "°C");
+					// lblMaxTemp.setText("max " + weather.getMaxTemp() + "°C");
+					//
+					// try {
+					// BufferedImage image = ImageIO
+					// .read(new URL("http://openweathermap.org/img/w/" +
+					// weather.getIcon() + ".png"));
+					// lblIcon = new JLabel(new ImageIcon(image));
+					// } catch (IOException e) {
+					// e.printStackTrace();
+					// }
 
 					try {
 						Thread.sleep(5000);
