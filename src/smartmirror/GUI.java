@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Properties;
 
@@ -68,11 +70,22 @@ public class GUI implements KeyListener {
 			e.printStackTrace();
 		}
 
+		String[] keys = new String[0];
 		for (Enumeration<?> enumeration = radios.keys(); enumeration.hasMoreElements();) {
+
+			String[] keys2 = new String[keys.length + 1];
+			System.arraycopy(keys, 0, keys2, 0, keys.length);
+			keys2[keys.length] = (String) enumeration.nextElement();
+			keys = keys2;
+		}
+
+		Arrays.sort(keys);
+
+		for (String s : keys) {
 
 			String[] radioKeys2 = new String[radioKeys.length + 1];
 			System.arraycopy(radioKeys, 0, radioKeys2, 0, radioKeys.length);
-			radioKeys2[radioKeys.length] = (String) enumeration.nextElement();
+			radioKeys2[radioKeys.length] = s;
 			radioKeys = radioKeys2;
 		}
 
@@ -163,9 +176,9 @@ public class GUI implements KeyListener {
 							}
 						}
 
+						menu.setItems(items.clone());
 						showMenu(false);
 						displayMenu = false;
-						menu.setItems(items.clone());
 					}
 				}).start();
 			}
