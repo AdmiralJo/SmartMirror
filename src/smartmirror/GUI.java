@@ -125,7 +125,7 @@ public class GUI implements KeyListener {
 		if (e.getKeyChar() == 'q') {
 
 			menu.setBounds((int) ((frame.getWidth() - frame.getHeight() / 2) / 2), (int) (frame.getHeight() / 5),
-					(int) (frame.getHeight() / 2), (int) (frame.getHeight() / 4));
+					(int) (frame.getHeight() / 2), (int) (frame.getHeight() / 5));
 
 			i = 500;
 

@@ -23,13 +23,13 @@ public class Menu extends JPanel {
 		setBackground(Color.black);
 		setLayout(layout);
 
-		top = new MenuItem("", 42, true);
+		top = new MenuItem("", 32, true);
 		Graphics.addComponent(this, layout, top, 0, 0, 1, 1, 1, 1, new Insets(0, 0, 0, 0));
 
-		center = new MenuItem("", 62, false);
+		center = new MenuItem("", 48, false);
 		Graphics.addComponent(this, layout, center, 0, 1, 1, 1, 1, 1, new Insets(0, 0, 0, 0));
 
-		bottom = new MenuItem("", 42, true);
+		bottom = new MenuItem("", 32, true);
 		Graphics.addComponent(this, layout, bottom, 0, 2, 1, 1, 1, 1, new Insets(0, 0, 0, 0));
 		display();
 	}
