@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Properties;
@@ -38,7 +37,7 @@ public class GUI implements KeyListener {
 	public GUI() {
 
 		frame.setUndecorated(true);
-		frame.setBounds(800, 10, 600, 800);
+		// frame.setBounds(800, 10, 600, 800);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setLayout(layout);
 		frame.addKeyListener(this);
@@ -60,8 +59,6 @@ public class GUI implements KeyListener {
 		Graphics.addComponent(panel, layout, menuPane, 0, 2, 1, 1, 1, 1, new Insets(10, 10, 10, 10));
 
 		menu = new Menu(items);
-		menu.setBounds((int) (frame.getWidth() / 6), (int) (frame.getHeight() / 5), (int) (frame.getWidth() / 3 * 2),
-				(int) (frame.getHeight() / 4));
 		menuPane.add(menu);
 
 		radios = new Properties();
@@ -126,6 +123,9 @@ public class GUI implements KeyListener {
 		}
 
 		if (e.getKeyChar() == 'q') {
+
+			menu.setBounds((int) ((frame.getWidth() - frame.getHeight() / 2) / 2), (int) (frame.getHeight() / 5),
+					(int) (frame.getHeight() / 2), (int) (frame.getHeight() / 4));
 
 			i = 500;
 
