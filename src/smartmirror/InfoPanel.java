@@ -56,7 +56,7 @@ public class InfoPanel extends JPanel {
 		lblDate.setForeground(Color.white);
 		Graphics.addComponent(pnlDate, layout, lblDate, 0, 1, 1, 1, 0, 0, new Insets(0, 50, 0, 10));
 
-		SimpleDateFormat time = new SimpleDateFormat("hh:mm");
+		SimpleDateFormat time = new SimpleDateFormat("HH:mm");
 		DateTimeFormatter date = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 
 		new Thread(new Runnable() {
