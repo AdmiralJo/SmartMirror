@@ -165,6 +165,7 @@ public class GUI implements KeyListener {
 
 						showMenu(false);
 						displayMenu = false;
+						menu.setItems(items.clone());
 					}
 				}).start();
 			}
