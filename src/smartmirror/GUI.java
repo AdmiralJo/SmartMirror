@@ -39,6 +39,7 @@ public class GUI implements KeyListener {
 
 		frame.setUndecorated(true);
 		frame.setBounds(800, 10, 600, 800);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setLayout(layout);
 		frame.addKeyListener(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
