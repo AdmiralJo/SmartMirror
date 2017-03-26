@@ -26,9 +26,9 @@ public class GUI implements KeyListener {
 	Menu menu;
 	InfoPanel info;
 	Properties radios;
-	String[] radioKeys = new String[0];
+	String[] radioKeys = { "zurück", "Radio ausschalten" };
 	Radio radio = new Radio();
-	String[] items = { "Smart Home", "Licht", "Radio", "Einstellungen" }, settings = { "Newsbar anzeigen", "zurück" };
+	String[] items = { "Smart Home", "Licht", "Radio", "Einstellungen" }, settings = { "zurück", "Newsbar anzeigen" };
 	PiInterface piInterface = new PiInterface();
 	boolean displayMenu = false;
 	int i = 0;
@@ -76,11 +76,11 @@ public class GUI implements KeyListener {
 			radioKeys = radioKeys2;
 		}
 
-		String[] radioKeys2 = new String[radioKeys.length + 2];
-		System.arraycopy(radioKeys, 0, radioKeys2, 0, radioKeys.length);
-		radioKeys2[radioKeys.length] = "Radio ausschalten";
-		radioKeys2[radioKeys.length + 1] = "zurück";
-		radioKeys = radioKeys2;
+		// String[] radioKeys2 = new String[radioKeys.length + 2];
+		// System.arraycopy(radioKeys, 0, radioKeys2, 0, radioKeys.length);
+		// radioKeys2[radioKeys.length] = "Radio ausschalten";
+		// radioKeys2[radioKeys.length + 1] = "zurück";
+		// radioKeys = radioKeys2;
 
 		showMenu(false);
 		frame.setVisible(true);
