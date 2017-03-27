@@ -6,14 +6,13 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 import smartmirror.Menu;
-import smartmirror.MenuPanel;
 
 public class TestMenu {
 	public static void main(String[] args) {
 
 		String[] s = { "Blub", "Licht", "Einstellungen", "Radio" };
 
-		MenuPanel menu = new MenuPanel(s);
+		Menu menu = new Menu(s);
 		menu.setBounds(10, 10, 980, 780);
 
 		JFrame frame = new JFrame();
