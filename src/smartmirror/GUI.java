@@ -37,7 +37,7 @@ public class GUI implements KeyListener {
 	public GUI() {
 
 		frame.setUndecorated(true);
-		// frame.setBounds(800, 10, 600, 800);
+		// frame.setBounds(10, 10, 800, 600);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setLayout(layout);
 		frame.addKeyListener(this);
@@ -124,9 +124,6 @@ public class GUI implements KeyListener {
 
 		if (e.getKeyChar() == 'q') {
 
-			menu.setBounds((int) ((frame.getWidth() - frame.getHeight() / 2) / 2), (int) (frame.getHeight() / 6),
-					(int) (frame.getHeight() / 2), (int) (frame.getHeight() / 4));
-
 			i = 500;
 
 			if (displayMenu) {
@@ -183,6 +180,11 @@ public class GUI implements KeyListener {
 					}
 				}).start();
 			}
+
+			menu.setBounds((int) (frame.getWidth() / 4),
+					(int) ((frame.getHeight() - news.getHeight() - info.getHeight() - (int) (frame.getWidth() / 4) - 60)
+							/ 2),
+					(int) (frame.getWidth() / 2), (int) (frame.getWidth() / 4));
 		}
 	}
 

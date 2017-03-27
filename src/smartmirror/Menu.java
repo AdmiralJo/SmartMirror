@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import essentials.Graphics;
@@ -90,10 +91,10 @@ public class Menu extends JPanel {
 	public String getText() {
 		return center.getText();
 	}
-	
+
 	public void show(boolean b) {
-		
-		if(b) {
+
+		if (b) {
 			top.show(true);
 			center.show(true);
 			bottom.show(true);
