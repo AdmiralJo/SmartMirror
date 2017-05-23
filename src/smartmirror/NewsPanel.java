@@ -37,7 +37,7 @@ public class NewsPanel extends JPanel {
 		Graphics2D g = (Graphics2D) graphics;
 		Font font;
 		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("res\\font.otf")).deriveFont(0, 32);
+			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("res/font.otf")).deriveFont(0, 32);
 		} catch (FontFormatException | IOException e) {
 			font = new Font("Verdana", 0, 32);
 			e.printStackTrace();

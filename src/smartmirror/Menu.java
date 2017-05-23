@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import essentials.Graphics;
@@ -86,6 +85,10 @@ public class Menu extends JPanel {
 	public void setItems(String[] items) {
 		this.items = items;
 		display();
+	}
+
+	public String[] getItems() {
+		return items.clone();
 	}
 
 	public String getText() {

@@ -4,7 +4,7 @@ public class Main {
 
 	public Main() {
 		new GUI();
-//		new SmartHomeServer();
+		new SmartHomeServer();
 	}
 	
 	public static void main(String[] args) {

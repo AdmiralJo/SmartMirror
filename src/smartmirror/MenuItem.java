@@ -28,7 +28,7 @@ public class MenuItem extends JPanel {
 		setLayout(layout);
 
 		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("res\\font.otf")).deriveFont(0, fontsize);
+			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("res/font.otf")).deriveFont(0, fontsize);
 		} catch (Exception e) {
 			font = new Font("Verdana", 0, fontsize);
 			e.printStackTrace();

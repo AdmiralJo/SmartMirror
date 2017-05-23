@@ -38,7 +38,7 @@ public class InfoPanel extends JPanel {
 		Graphics.addComponent(this, layout, pnlDate, 0, 0, 1, 1, 0, 0, new Insets(0, 0, 0, 0));
 
 		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("res\\info.ttf")).deriveFont(0, 82);
+			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("res/info.ttf")).deriveFont(0, 82);
 		} catch (FontFormatException | IOException e) {
 			font = new Font("Verdana", 0, 82);
 			e.printStackTrace();

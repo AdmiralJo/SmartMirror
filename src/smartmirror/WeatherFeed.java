@@ -62,8 +62,8 @@ public class WeatherFeed {
 	public String getIcon() {
 		return icon;
 	}
-	
-	public String getRainProbability(){
+
+	public String getRainProbability() {
 		return rainprob;
 	}
 
@@ -106,9 +106,8 @@ public class WeatherFeed {
 				icon = keyvalue.substring(keyvalue.indexOf("\"icon\":\""), keyvalue.indexOf("\"icon\":\"") + 11);
 				icon = icon.replaceAll("\"icon\":\"", "");
 			}
-			
 
-			//System.out.println("key: " + keyStr + " value: " + keyvalue);
+			// System.out.println("key: " + keyStr + " value: " + keyvalue);
 
 		}
 

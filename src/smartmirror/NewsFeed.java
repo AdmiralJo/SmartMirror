@@ -11,7 +11,7 @@ public class NewsFeed {
 	 * @version 1.0
 	 * 
 	 */
-	static String rssUrl = "http://www.tagesschau.de/xml/rss2"; //https://www.welt.de/feeds/topnews.rss
+	static String rssUrl = "http://www.tagesschau.de/xml/rss2"; // https://www.welt.de/feeds/topnews.rss
 	boolean console = false;
 
 	public NewsFeed() {
@@ -77,17 +77,16 @@ public class NewsFeed {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		sourceCode = sourceCode.replaceAll("Ã¤", "ä");
 		sourceCode = sourceCode.replaceAll("ÃŸ", "ß");
 		sourceCode = sourceCode.replaceAll("Ã¼", "ü");
 		sourceCode = sourceCode.replaceAll("Ã¶", "ö");
-		
-		
+
 		return sourceCode.split("\n");
 
 	}
-	
+
 	public String[] getNews(String source) {
 		rssUrl = source;
 		String sourceCode = "";

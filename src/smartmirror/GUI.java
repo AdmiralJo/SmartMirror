@@ -3,6 +3,7 @@ package smartmirror;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileInputStream;
@@ -20,27 +21,31 @@ import essentials.Graphics;
 
 public class GUI implements KeyListener {
 
-	JFrame frame = new JFrame();
+	static JFrame frame = new JFrame();
 	GridBagLayout layout = new GridBagLayout();
 	JPanel panel = new JPanel(), pnlMenu = new JPanel(), menuPane;
-	NewsPanel news = new NewsPanel();
-	Menu menu;
+	static NewsPanel news = new NewsPanel();
+	static Menu menu;
 	InfoPanel info;
-	Properties radios;
-	String[] radioKeys = { "zurück", "Radio ausschalten" };
-	Radio radio = new Radio();
-	String[] items = { "Smart Home", "Licht", "Radio", "Einstellungen" }, settings = { "zurück", "Newsbar anzeigen" };
-	PiInterface piInterface = new PiInterface();
-	boolean displayMenu = false;
-	int i = 0;
+	static Properties radios;
+	static String[] radioKeys = { "zurück", "Radio ausschalten" };
+	static Radio radio = new Radio();
+	static String[] items = { "Smart Home", "Licht einschalten", "Radio", "Einstellungen" };
+	static String[] settings = { "zurück", "Newsbar anzeigen" };
+	static PiInterface piInterface = new PiInterface();
+	static boolean displayMenu = false;
+	static int i = 0;
+	static String[] modules = { "zurück" };
 
 	public GUI() {
 
-		frame.setUndecorated(true);
-		// frame.setBounds(10, 10, 800, 600);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setBounds(0, 0, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth()),
+				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
 		frame.setLayout(layout);
+		frame.setUndecorated(true);
+		// frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.addKeyListener(this);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		panel.setLayout(layout);
@@ -63,7 +68,7 @@ public class GUI implements KeyListener {
 
 		radios = new Properties();
 		try {
-			radios.load(new FileInputStream("res\\radios.properties"));
+			radios.load(new FileInputStream("res/radios.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -124,6 +129,9 @@ public class GUI implements KeyListener {
 
 		if (e.getKeyChar() == 'q') {
 
+			menu.setBounds((int) ((frame.getWidth() - frame.getHeight() / 2) / 2), (int) (frame.getHeight() / 5),
+					(int) (frame.getHeight() / 2), (int) (frame.getHeight() / 5));
+
 			i = 500;
 
 			if (displayMenu) {
@@ -136,12 +144,50 @@ public class GUI implements KeyListener {
 						menu.setItems(radioKeys.clone());
 
 					else if (Essentials.isIncluded(radioKeys, menu.getText())) {
+						
+						System.out.println("Radio: " + menu.getText());
+						
 						radio.stop();
 						radio.play(radios.getProperty(menu.getText()));
 					}
 
-					if (menu.getText().equals("Licht"))
-						piInterface.switchLight();
+					if (GUI.menu.getText().equals("Licht einschalten")) {
+						GUI.items[1] = "Licht ausschalten";
+						String[] m = GUI.items.clone();
+						while (!m[1].startsWith("Licht")) {
+
+							String overfloat = m[0];
+							for (int k = 0; k < m.length; k++)
+								if (k < m.length - 1)
+									m[k] = m[k + 1];
+							m[m.length - 1] = overfloat;
+						}
+						GUI.menu.setItems(m);
+						GUI.piInterface.switchLight();
+					} else if (GUI.menu.getText().equals("Licht ausschalten")) {
+						GUI.items[1] = "Licht einschalten";
+						String[] m = GUI.items.clone();
+						while (!m[1].startsWith("Licht")) {
+
+							String overfloat = m[0];
+							for (int k = 0; k < m.length; k++)
+								if (k < m.length - 1)
+									m[k] = m[k + 1];
+							m[m.length - 1] = overfloat;
+						}
+						GUI.menu.setItems(m);
+						GUI.piInterface.switchLight();
+					}
+
+					if (menu.getText().equals("Smart Home"))
+						menu.setItems(modules.clone());
+
+					else if (Essentials.isIncluded(modules, menu.getText())) {
+
+						for (ClientThread thread : SmartHomeServer.clients) {
+							thread.changeState(Integer.parseInt(String.valueOf(menu.getText().charAt(6))));
+						}
+					}
 
 					if (menu.getText().equals("Einstellungen")) {
 						menu.setItems(settings);
@@ -180,15 +226,10 @@ public class GUI implements KeyListener {
 					}
 				}).start();
 			}
-
-			menu.setBounds((int) (frame.getWidth() / 4),
-					(int) ((frame.getHeight() - news.getHeight() - info.getHeight() - (int) (frame.getWidth() / 4) - 60)
-							/ 2),
-					(int) (frame.getWidth() / 2), (int) (frame.getWidth() / 4));
 		}
 	}
 
-	void showMenu(boolean b) {
+	static void showMenu(boolean b) {
 
 		if (b) {
 			menu.show(true);

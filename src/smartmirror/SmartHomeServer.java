@@ -6,21 +6,29 @@ import java.net.Socket;
 
 public class SmartHomeServer {
 
-    ServerSocket server;
-    Socket socket;
+	ServerSocket server;
+	Socket socket;
+	int id = 0;
 
-    final int PORT = 1234;
+	final int PORT = 1234;
 
-    public SmartHomeServer() {
+	static ClientThread[] clients = new ClientThread[0];
 
-        try {
-            server = new ServerSocket(PORT);
-            while (true) {
-                socket = server.accept();
-                new ClientThread(socket).start();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	public SmartHomeServer() {
+
+		try {
+			server = new ServerSocket(PORT);
+			while (true) {
+				socket = server.accept();
+				ClientThread[] c = new ClientThread[clients.length + 1];
+				System.arraycopy(clients, 0, c, 0, clients.length);
+				c[clients.length] = new ClientThread(socket, id);
+				clients = c;
+				clients[id].start();
+				id++;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
