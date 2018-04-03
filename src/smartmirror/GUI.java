@@ -30,7 +30,7 @@ public class GUI implements KeyListener {
 	static Properties radios;
 	static String[] radioKeys = { "zurück", "Radio ausschalten" };
 	static Radio radio = new Radio();
-	static String[] items = { "Smart Home", "Licht einschalten", "Radio", "Einstellungen" };
+	static String[] items = { "Smart Home", "Licht ausschalten", "Radio", "Einstellungen" };
 	static String[] settings = { "zurück", "Newsbar anzeigen" };
 	static PiInterface piInterface = new PiInterface();
 	static boolean displayMenu = false;

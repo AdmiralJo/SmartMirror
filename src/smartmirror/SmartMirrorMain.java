@@ -1,13 +1,13 @@
 package smartmirror;
 
-public class Main {
+public class SmartMirrorMain {
 
-	public Main() {
+	public SmartMirrorMain() {
 		new GUI();
 		new SmartHomeServer();
 	}
 	
 	public static void main(String[] args) {
-		new Main();
+		new SmartMirrorMain();
 	}
 }

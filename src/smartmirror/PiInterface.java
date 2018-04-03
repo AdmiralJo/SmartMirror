@@ -95,7 +95,10 @@ public class PiInterface {
 									m[m.length - 1] = overfloat;
 								}
 								GUI.menu.setItems(m);
-								GUI.piInterface.switchLight();
+//								b = false;
+//								GUI.piInterface.switchLight();
+								
+								GUI.piInterface.turnLighOn();
 							} else if (GUI.menu.getText().equals("Licht ausschalten")) {
 								GUI.items[1] = "Licht einschalten";
 								String[] m = GUI.items.clone();
@@ -108,7 +111,10 @@ public class PiInterface {
 									m[m.length - 1] = overfloat;
 								}
 								GUI.menu.setItems(m);
-								GUI.piInterface.switchLight();
+//								b = true;
+//								GUI.piInterface.switchLight();
+								
+								GUI.piInterface.turnLighOff();
 							}
 
 							if (GUI.menu.getText().equals("Smart Home"))
@@ -163,6 +169,18 @@ public class PiInterface {
 		});
 	}
 
+	public void turnLighOn(){
+		light_pin.high();
+		b = true;
+		System.out.println("Lights turned on");
+	}
+	
+	public void turnLighOff(){
+		light_pin.low();
+		b = false;
+		System.out.println("Lights turned off");
+	}
+	
 	public void switchLight() {
 		if (!b) {
 			light_pin.high();
